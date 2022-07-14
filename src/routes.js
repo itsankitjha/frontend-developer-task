@@ -3,13 +3,13 @@ import { CircularProgress } from "@mui/material";
 
 import ErrorBoundary from "components/ErrorBoundary";
 
-const Notes = lazy(() => import("containers/Notes"));
+const Auth = lazy(() => import("containers/Auth"));
 
-function LazyNotes(props) {
+function LazyAuth(props) {
   return (
     <Suspense fallback={<CircularProgress />}>
       <ErrorBoundary>
-        <Notes {...props} />
+        <Auth {...props} />
       </ErrorBoundary>
     </Suspense>
   );
@@ -17,9 +17,9 @@ function LazyNotes(props) {
 
 const allRoutes = [
   {
-    path: "/notes",
-    name: "app",
-    element: <LazyNotes />,
+    path: "/auth",
+    name: "auth",
+    element: <LazyAuth />,
     layout: "app",
   },
 ];

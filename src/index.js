@@ -2,12 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 
 import App from "App";
 import defaultTheme from "assets/themes/defaultTheme";
 import { store } from "store/store";
 import reportWebVitals from "reportWebVitals";
+
+import "./index.css";
 
 const theme = createTheme(defaultTheme);
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,6 +18,7 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <CssBaseline />
           <App />
         </BrowserRouter>
       </ThemeProvider>
