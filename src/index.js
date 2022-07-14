@@ -1,13 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from "App";
+import defaultTheme from "assets/themes/defaultTheme";
+import { store } from "store/store";
+import reportWebVitals from "reportWebVitals";
+
+import "./index.css";
+
+const theme = createTheme(defaultTheme);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <CssBaseline />
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 

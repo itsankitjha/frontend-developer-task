@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container } from "@mui/material";
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import allRoutes from "routes";
 
 function App() {
+  const getRoutes = (routes) =>
+    routes.map((prop) => (
+      <Route path={prop.layout + prop.path} element={prop.element} key={prop.name} />
+    ));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="xl" sx={{ background: " #131319", height: "100vh" }}>
+      <Routes>
+        {getRoutes(allRoutes)}
+        <Route path="/" element={<Navigate to="/app/auth" replace />} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>There&apos;s nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
+    </Container>
   );
 }
 
