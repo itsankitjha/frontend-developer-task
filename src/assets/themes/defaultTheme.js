@@ -4,6 +4,7 @@ const defaultTheme = {
     values: {
       xs: 0,
       sm: 600,
+      smd: 660,
       md: 900,
       lg: 1200,
       xl: 1536,
@@ -81,7 +82,7 @@ const defaultTheme = {
     text: {
       primary: "rgba(172,174,177,255)",
       secondary: "rgba(0, 0, 0, 0.6)",
-      disabled: "rgba(0, 0, 0, 0.38)",
+      disabled: "white",
     },
     divider: "rgba(0, 0, 0, 0.12)",
     background: {
@@ -94,7 +95,7 @@ const defaultTheme = {
       hoverOpacity: 0.04,
       selected: "rgba(0, 0, 0, 0.08)",
       selectedOpacity: 0.08,
-      disabled: "rgba(0, 0, 0, 0.26)",
+      disabled: "grey",
       disabledBackground: "rgba(0, 0, 0, 0.12)",
       disabledOpacity: 0.38,
       focus: "rgba(0, 0, 0, 0.12)",

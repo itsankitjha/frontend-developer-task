@@ -9,7 +9,7 @@ function App() {
       <Route path={prop.layout + prop.path} element={prop.element} key={prop.name} />
     ));
   return (
-    <Container maxWidth="xl" sx={{ background: " #131319", height: "100vh" }}>
+    <Container maxWidth="xl" sx={{ background: "#131319", height: "500vh" }}>
       <Routes>
         {getRoutes(allRoutes)}
         <Route path="/" element={<Navigate to="/app/auth" replace />} />

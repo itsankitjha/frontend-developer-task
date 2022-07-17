@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import requestApi from "config/apiHandler";
 
 export const verifyUser = createAsyncThunk(
@@ -25,13 +25,22 @@ const initialState = {
   currentRequestId: undefined,
   loading: "idle",
   error: null,
-  toekn: null,
+  token: null,
+  userData: {},
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    setUserData(state, action) {
+      const data = action.payload;
+      state.userData = {
+        ...current(state.userData),
+        ...data,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(verifyUser.pending, (state, action) => {
@@ -61,5 +70,5 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-// export const { } = authSlice.actions;
+export const { setUserData } = authSlice.actions;
 export default authSlice.reducer;

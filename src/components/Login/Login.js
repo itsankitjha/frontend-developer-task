@@ -5,16 +5,18 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import InputField from "components/InputField/InputField";
 import { Typography, Box } from "@mui/material";
 import { signInData, signUpData } from "data/LoginData";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ isVisible }) {
   const [open, setOpen] = React.useState(false);
   const [isSignUp, setIsSignUp] = React.useState(false);
   const [data, setData] = React.useState(signInData);
+  const [canNavigateToFeeds, setCanNavigateToFeeds] = React.useState(false);
+  const navigate = useNavigate();
   React.useEffect(() => {
     setOpen(isVisible);
   }, [isVisible]);
@@ -25,6 +27,11 @@ export default function Login({ isVisible }) {
       setData(signInData);
     }
   }, [isSignUp]);
+  React.useEffect(() => {
+    if (canNavigateToFeeds === true) {
+      navigate("/app/feeds", { replace: true });
+    }
+  }, [canNavigateToFeeds]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -32,6 +39,11 @@ export default function Login({ isVisible }) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleButtonClick = () => {
+    console.log();
+    setCanNavigateToFeeds(true);
   };
 
   return (
@@ -57,7 +69,7 @@ export default function Login({ isVisible }) {
             {data.heading}
           </DialogTitle>
           <DialogContent>
-            <InputField type="email" />
+            <InputField type="email" isSignUp={isSignUp} />
             <br />
             {isSignUp === true ? (
               <>
@@ -69,7 +81,11 @@ export default function Login({ isVisible }) {
             <InputField type="password" />
           </DialogContent>
           <DialogActions sx={{ display: "flex", flexDirection: "column", alignItems: "left" }}>
-            <Button variant="contained" sx={{ width: "95%", margin: "auto" }}>
+            <Button
+              variant="contained"
+              sx={{ width: "95%", margin: "auto" }}
+              onClick={handleButtonClick}
+            >
               {data.btnText}
             </Button>
 
