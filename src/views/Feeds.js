@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Container, Typography, Box, Button } from "@mui/material";
+import { Container, Typography, Box, Button, IconButton, Backdrop } from "@mui/material";
 import InputField from "components/InputField/InputField";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 import MessageIcon from "@mui/icons-material/Message";
 import Post from "components/Post/Post";
 import feedsData from "data/feedsData";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "store/slices/feedSlice";
+import { Link } from "react-router-dom";
 
 function Feeds({ name }) {
   const [postText, setPostText] = useState("");
@@ -28,6 +31,13 @@ function Feeds({ name }) {
 
   return (
     <Container maxWidth="smd" sx={{ paddingTop: 5 }}>
+      <Box sx={{ width: "100%", display: "flex", flexDirection: "row-reverse" }}>
+        <Link to="/app/auth">
+          <IconButton sx={{ textAlign: "right" }}>
+            <LogoutOutlinedIcon color="primary" />
+          </IconButton>
+        </Link>
+      </Box>
       <Box>
         <Typography variant="h5" sx={{ marginBottom: "2%", fontWeight: 700 }}>
           Hello {name}
